@@ -3,6 +3,7 @@ const btn = document.querySelector(".btn");
 let defaultGridSize = ("256");
 let gridSize = parseInt(defaultGridSize);
 
+
 grid(gridSize);
 newGrid();
 
@@ -31,9 +32,14 @@ function newGrid() {
             });
         userInput = prompt('Set grid size', '');
         gridSize = parseInt(userInput);
-        grid(gridSize);
+        let gridSizeSquared = Math.pow(gridSize, 2);
+        grid(gridSizeSquared);
         console.log(gridSize);
+        console.log(gridSizeSquared);
     });
 }
 
+function sum (x, x) {
+
+}
 //error happens if larger than 1,024 boxes.
