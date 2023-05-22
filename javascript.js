@@ -12,7 +12,9 @@ function grid(num) {
         gridBox.classList.add('gridBox');
         gridBox.style.width = boxSize + 'px';
         gridBox.style.height = boxSize + 'px';
+        gridBox.addEventListener("mouseover", function(event) {
+            gridBox.style.backgroundColor = 'red';
+        })
         container.appendChild(gridBox);
     }
 }
-
