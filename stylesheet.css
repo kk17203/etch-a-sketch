@@ -6,26 +6,19 @@ body {
     justify-content: center;
 }
 
-#container {
+#master-grid {
     width: 960px;
     height: 960px;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    margin: 0px;
-    padding: 0px;
     border: 1px solid black;
 }
 
-.gridBox {
-    background-color: white;
-    margin: 0;
-    padding: 0;
+.gridDivs {
     width: 100%;
     height: 100%;
     display: flex;
-    flex: 1 1 auto;
     box-sizing: border-box;
     
     

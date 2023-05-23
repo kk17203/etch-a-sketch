@@ -1,45 +1,35 @@
-const container = document.querySelector('#container');
+const masterDiv = document.querySelector('#master-grid');
 const btn = document.querySelector(".btn");
-let defaultGridSize = ("256");
-let gridSize = parseInt(defaultGridSize);
+let gridInput = 16;
 
 
-grid(gridSize);
-newGrid();
+function makeGrid(x) {
+    let gridSize = x * x -1;
+    masterDiv.style.gridTemplateColumns = `repeat(${x}, 1fr)`
+    masterDiv.style.gridTemplateRows = `repeat(${x}, 1fr)`
 
-function grid(num) {
-    const containerWidth = container.offsetWidth;
-    const containerHeight = container.offsetHeight;
-    const boxSize = Math.floor(containerWidth/Math.sqrt(num));
-    for (r = 0; r < num; r++) {
-        let gridBox = document.createElement('div');
-        gridBox.classList.add('gridBox');
-        gridBox.style.width = boxSize + 'px';
-        gridBox.style.height = boxSize + 'px';
-        gridBox.addEventListener("mouseover", function(event) {
-            gridBox.style.backgroundColor = 'yellow';
-        })
-        
-        container.appendChild(gridBox);
+    for (i = 0; i <= gridSize; ++i) {
+        let gridDiv = document.createElement('div');
+        gridDiv.className = 'gridDivs';
+        masterDiv.appendChild(gridDiv);
+        gridDiv.addEventListener('mouseover', function(e) {
+            this.style.backgroundColor = 'black';
+        });      
     }
 }
 
-function newGrid() {
-    btn.addEventListener('click', function(e) {
-        let gridBoxes = document.querySelectorAll('.gridBox');
-        gridBoxes.forEach(function(box) {
-            container.removeChild(box);
-            });
-        userInput = prompt('Set grid size', '');
-        gridSize = parseInt(userInput);
-        let gridSizeSquared = Math.pow(gridSize, 2);
-        grid(gridSizeSquared);
-        console.log(gridSize);
-        console.log(gridSizeSquared);
+function clearGrid(x){
+    masterDiv.innerHTML = ('');
+}
+
+    btn.addEventListener('click', function() {
+        clearGrid(gridInput);
+        gridInput = prompt('Select new resolution within 1 - 64', '');
+        if (gridInput > 64 || gridInput < 1) {
+            alert('Out of range');
+            return;
+        }
+        makeGrid(gridInput)
     });
-}
 
-function sum (x, x) {
-
-}
-//error happens if larger than 1,024 boxes.
+    makeGrid(gridInput);
